@@ -46,9 +46,9 @@ namespace ParametersValidation
         /// <returns>Is Valid</returns>
         private bool CheckClosure(string str, int index)
         {
-            bool isValid = true;
+            bool isValid = false;
 
-            while(str.Length > 1)
+            while(str.Length > 1 && index < str.Length-1)
             {
                 //--First we check if the character is closed correctly
                 var match = CheckMatch(str[index], str[index+1]);
@@ -153,5 +153,14 @@ namespace ParametersValidation
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void AnotherÍnValidString()
+        {
+            var input = "{{(}})";
+
+            var result = challenge.Execute(input);
+
+            Assert.IsFalse(result);
+        }
     }
 }
